@@ -5,8 +5,8 @@ import { useSelectedLayoutSegment } from "next/navigation";
 import Link from "next/link";
 
 export default function NavMenu() {
-  const segment = useSelectedLayoutSegment();
-  console.log(segment);
+  const segment = useSelectedLayoutSegment(); //어느페이지에 있는지 알기, 상위만나옴
+
   const me = {
     id: "messi123",
   };

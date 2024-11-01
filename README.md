@@ -65,6 +65,12 @@ height: 100dvh;
 
 - Parallel Routes는 여러 컴포넌트를 한 페이지에서 동시에 보여주고 싶을 때 주로 사용되며, Intercepted Routes는 URI에 따른 상태 변경이 필요한 경우에 더 적합합니다.
 
+# useSelectedLayoutSegment
+
+# usepathname
+
+# useSearchParams
+
 css
 
 - '> div'와 div 차이: 직계자식과 전체자식
