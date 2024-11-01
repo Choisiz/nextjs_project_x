@@ -10,9 +10,10 @@ import FollowRecommend from "@/app/(afterLogin)/_component/FollowRecommend";
 
 type Props = {
   children: ReactNode;
+  modal: ReactNode;
 };
 
-export default function AfterLoginLayout({ children }: Props) {
+export default function AfterLoginLayout({ children, modal }: Props) {
   return (
     <div className={style.container}>
       <header className={style.leftSectionWrapper}>
@@ -35,7 +36,6 @@ export default function AfterLoginLayout({ children }: Props) {
           </div>
         </section>
       </header>
-
       <div className={style.rightSectionWrapper}>
         <div className={style.rightSectionInner}>
           <main className={style.main}>{children}</main>
@@ -60,6 +60,7 @@ export default function AfterLoginLayout({ children }: Props) {
           </section>
         </div>
       </div>
+      {modal}
     </div>
   );
 }
