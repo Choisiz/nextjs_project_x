@@ -71,6 +71,10 @@ height: 100dvh;
 
 # useSearchParams
 
+서버컴포넌트는 클라이언트 자식일때 항상 props, children으로 보낸다.
+onClickCapture
+useRef
+
 css
 
 - '> div'와 div 차이: 직계자식과 전체자식
