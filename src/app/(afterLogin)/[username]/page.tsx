@@ -1,12 +1,11 @@
 import style from "./profile.module.css";
 import Post from "@/app/(afterLogin)/_component/Post";
 import BackButton from "@/app/(afterLogin)/_component/BackButton";
-
 export default function Profile() {
   const user = {
-    id: "messi",
-    nickname: "messi",
-    image: "/zlogo.png",
+    id: "elonmusk",
+    nickname: "Elon Musk",
+    image: "/mesi.jpg",
   };
 
   return (

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import style from "./singlePost.module.css";
 import BackButton from "@/app/(afterLogin)/_component/BackButton";
 import Post from "@/app/(afterLogin)/_component/Post";

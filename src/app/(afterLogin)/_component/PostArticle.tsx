@@ -7,15 +7,15 @@ import style from "./post.module.css";
 type Props = {
   children: ReactNode;
   post: {
-    content: string;
     postId: number;
+    content: string;
     User: {
       id: string;
       nickname: string;
       image: string;
     };
     createdAt: Date;
-    Image: any[];
+    Images: any[];
   };
 };
 
