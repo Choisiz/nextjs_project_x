@@ -31,7 +31,7 @@ export default function Default() {
       <div className={style.commentZone}>
         <Post noImage />
         <CommentForm />
-        <Post />
+        <Post noImage />
         <Post />
         <Post />
         <Post />

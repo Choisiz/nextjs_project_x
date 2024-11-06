@@ -115,3 +115,6 @@ css
 - '> div'와 div 차이: 직계자식과 전체자식
 - 부모자식간 width 100%를 설정하게 될경우 차이가 있을수도 있기때문에
   width: 'inherit'을 추천한다.
+  background-size: contain;
+  background-repeat: no-repeat;
+  {user.Messages?.at(-1)?.content}
