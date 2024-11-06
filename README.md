@@ -118,3 +118,5 @@ css
   background-size: contain;
   background-repeat: no-repeat;
   {user.Messages?.at(-1)?.content}
+  display: inline-block;
+  grid-template-rows: 1fr 1fr;
