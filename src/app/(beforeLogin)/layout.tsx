@@ -9,7 +9,6 @@ type Props = {
 export default function Layout({ children, modal }: Props) {
   return (
     <div className={styles.container}>
-      비포 로그인 레이아웃
       {children} {/*일반페이지 */}
       {modal} {/*모달페이지 */}
     </div>
