@@ -110,7 +110,16 @@
 onClickCapture
 useRef
 
-css
+# MSV
+
+env는 NEXT_PUBLIC리 붙으면 브라우저에서 접근가능
+그렇기 때문에 유출이 되면 안되면 빼고써야함
+env local을 쓰면 로컬에서는 env env.local 둘다 실행
+->그냥 로컬에서는 env.local이 돌아간다고 생각하면 쉬움
+
+redirect()는 try catch문안에서 사용하면 안됨
+
+# css
 
 - '> div'와 div 차이: 직계자식과 전체자식
 - 부모자식간 width 100%를 설정하게 될경우 차이가 있을수도 있기때문에

@@ -11,15 +11,18 @@ const Posts = [];
 export const handlers = [
   http.post("/api/login", () => {
     console.log("login");
-    return HttpResponse.json(User[1], {
+    return HttpResponse.json(null, {
       headers: {
-        "Set-Cookies": "connec t.sid=msw-cookie;HttpOnly;Path=/",
+        "Set-Cookies": "connect.sid=msw-cookie;HttpOnly;Path=/",
       },
     });
   }),
-  http.post("/api/logout", () => {
-    console.log("logout");
-    return HttpResponse.json(null, {
+  http.post("/api/users", () => {
+    console.log("회원가입");
+    // return HttpResponse.text(JSON.stringify("user_exists"), {
+    //   status: 403,
+    // });
+    return HttpResponse.text(JSON.stringify("ok"), {
       headers: {
         "Set-Cookies": "connect.sid=;HttpOnly;Path=/;Max-Age=0",
       },
