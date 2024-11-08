@@ -1,5 +1,6 @@
 "use server";
 
+import { signIn } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
 
 export default async (prevState: any, formData: FormData): Promise<any> => {
@@ -34,6 +35,11 @@ export default async (prevState: any, formData: FormData): Promise<any> => {
     }
     console.log(await response.json());
     shouldRedirect = true;
+    await signIn("credentials", {
+      username: formData.get("id"),
+      password: formData.get("password"),
+      redirect: false,
+    });
   } catch (e) {
     console.log(e);
     return { message: null };
