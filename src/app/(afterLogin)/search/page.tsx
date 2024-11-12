@@ -1,11 +1,8 @@
-"use client";
-
-import { useSearchParams } from "next/navigation";
 import style from "./search.module.css";
 import BackButton from "@/app/(afterLogin)/_component/BackButton";
 import SearchForm from "@/app/(afterLogin)/_component/SearchForm";
 import Tab from "@/app/(afterLogin)/search/_conponent/Tab";
-import Post from "@/app/(afterLogin)/_component/Post";
+
 import SearchResult from "./_conponent/SearchResult";
 
 type Props = {

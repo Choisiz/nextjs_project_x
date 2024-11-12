@@ -19,6 +19,8 @@ export default function LogoutButton() {
     return null;
   }
 
+  console.log("me", me);
+
   return (
     <button className={style.logOutButton} onClick={onLogout}>
       <div className={style.logOutUserImage}>
