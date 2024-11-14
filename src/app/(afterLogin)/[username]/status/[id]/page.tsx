@@ -1,6 +1,5 @@
 import style from "./singlePost.module.css";
 import BackButton from "@/app/(afterLogin)/_component/BackButton";
-import Post from "@/app/(afterLogin)/_component/Post";
 import CommentForm from "./_component/CommentForm";
 import SinglePost from "@/app/(afterLogin)/[username]/status/[id]/_component/SinglePost";
 import {
@@ -8,9 +7,9 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { getSinglePost } from "./_lib/getSinglePost";
-import { getSinglePostServer } from "./_lib/getSinglePostServer";
-import { getComments } from "./_lib/getComment";
+import { getSinglePost } from "@/app/(afterLogin)/[username]/status/[id]/_lib/getSinglePost";
+
+import { getComments } from "@/app/(afterLogin)/[username]/status/[id]/_lib/getComments";
 import Comments from "./_component/Comments";
 
 type Props = {
@@ -18,8 +17,12 @@ type Props = {
 };
 
 export default async function Page({ params }: Props) {
-  const { id } = params;
   const queryClient = new QueryClient();
+  if (!params?.id) {
+    return <p>Loading...</p>; // 또는 다른 로딩 UI
+  }
+  const { id } = params;
+
   await queryClient.prefetchQuery({
     queryKey: ["posts", id],
     queryFn: getSinglePost,
@@ -29,7 +32,6 @@ export default async function Page({ params }: Props) {
     queryFn: getComments,
   });
   const dehydratedState = dehydrate(queryClient);
-  console.log("dddd", dehydratedState);
 
   return (
     <div className={style.main}>
@@ -39,7 +41,7 @@ export default async function Page({ params }: Props) {
           <h3 className={style.headerTitle}>게시하기</h3>
         </div>
         <SinglePost id={id} />
-        <CommentForm />
+        <CommentForm id={id} />
         <div>
           <Comments id={id} />
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useQueryClient, useQuery } from "@tanstack/react-query";
-import { getComments } from "../_lib/getComment";
+import { getComments } from "@/app/(afterLogin)/[username]/status/[id]/_lib/getComments";
 import { Post as IPost } from "@/model/Post";
 import Post from "@/app/(afterLogin)/_component/Post";
 

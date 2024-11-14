@@ -5,9 +5,10 @@ import cx from "classnames";
 
 type Props = {
   white?: boolean;
+  post: Post;
 };
 
-export default function ActionButtons({ white }: Props) {
+export default function ActionButtons({ white, post }: Props) {
   const commented = true;
   const reposted = true;
   const liked = false;
