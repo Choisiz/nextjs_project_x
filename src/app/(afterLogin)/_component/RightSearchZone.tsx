@@ -1,13 +1,34 @@
 "use client";
 
 import style from "./rightSearchZone.module.css";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import SearchForm from "./SearchForm";
 
 export default function RightSearchZone() {
   const pathname = usePathname();
-  const onChangeFollow = () => {};
-  const onChangeAll = () => {};
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const onChangeFollow = () => {
+    if (!searchParams) return;
+    let url = `/search?q=${searchParams.get("q")}&pf=on`;
+    console.log("uu1", url);
+    if (searchParams.has("f")) {
+      console.log("ww");
+      url += `&f=${searchParams.get("f")}`;
+    }
+
+    router.replace(url);
+  };
+  const onChangeAll = () => {
+    if (!searchParams) return;
+    let url = `/search?q=${searchParams.get("q")}`;
+    console.log("uu2", url);
+
+    if (searchParams.has("f")) {
+      url += `&f=${searchParams.get("f")}`;
+    }
+    router.replace(url);
+  };
 
   if (pathname === "/explore") {
     return null;

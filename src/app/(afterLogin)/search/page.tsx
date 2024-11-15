@@ -2,12 +2,22 @@ import style from "./search.module.css";
 import BackButton from "@/app/(afterLogin)/_component/BackButton";
 import SearchForm from "@/app/(afterLogin)/_component/SearchForm";
 import Tab from "@/app/(afterLogin)/search/_conponent/Tab";
-
 import SearchResult from "./_conponent/SearchResult";
+import { Metadata } from "next";
 
 type Props = {
   searchParams: { q: string; f?: string; pf?: string };
 };
+
+export async function generateMetadata({
+  searchParams,
+}: Props): Promise<Metadata> {
+  return {
+    title: `${searchParams.q} - 검색 / Z`,
+    description: `${searchParams.q} - 검색 / Z`,
+  };
+}
+
 export default function Search({ searchParams }: Props) {
   return (
     <main className={style.main}>

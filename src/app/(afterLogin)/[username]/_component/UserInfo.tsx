@@ -5,12 +5,14 @@ import style from "@/app/(afterLogin)/[username]/profile.module.css";
 import BackButton from "@/app/(afterLogin)/_component/BackButton";
 import { getUser } from "../_lib/getUser";
 import { User } from "@/model/User";
+import { Session } from "@auth/core/types";
 
 type Props = {
   username: string;
+  session: Session | null;
 };
 
-export default function UserInfo({ username }: Props) {
+export default function UserInfo({ username, session }: Props) {
   const { data: user, error } = useQuery<
     User,
     Object,

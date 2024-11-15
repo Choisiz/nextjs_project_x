@@ -7,7 +7,6 @@ import { FormEventHandler } from "react";
 type Props = { q?: string };
 export default function SearchForm({ q }: Props) {
   const router = useRouter();
-
   const onSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     router.push(`/search?q=${event.currentTarget.search.value}`);

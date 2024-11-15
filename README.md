@@ -136,6 +136,18 @@ invaildate: 옵저버(사용하고 있는 데이터)가 있을때 가져옴, 즉
 reset: 초기데이터가 있는경우에 초기데이터로 리셋, 없으면 그냥 리프래쉬
 트리거 로딩, 에러로딩: 로딩상태, 에러상태 전환으로 확인
 
+# QueryClient()
+
+- prefetchQuery
+
+# useQueryClient()
+
+- getQueryData
+
+# useQuery
+
+# QueryFunction
+
 # css
 
 - '> div'와 div 차이: 직계자식과 전체자식
