@@ -16,7 +16,10 @@ const User = [
   { id: "ronaldo7", nickname: "ronaldo", image: faker.image.avatar() },
 ];
 
-const Posts = [];
+const delay = (ms: number) =>
+  new Promise((res) => {
+    setTimeout(res, ms);
+  });
 
 export const handlers = [
   http.post("/api/login", () => {
@@ -46,9 +49,14 @@ export const handlers = [
       },
     });
   }),
-  http.get("/api/postRecommends", ({ request }) => {
+  http.get("/api/postRecommends", async ({ request }) => {
+    console.log("추천게시글");
+    await delay(1000);
+    console.log("딜레이 종료");
     const url = new URL(request.url);
     const cursor = parseInt(url.searchParams.get("cursor") as string) || 0;
+    console.log("cc", cursor);
+    console.log("url", url);
     return HttpResponse.json([
       {
         postId: cursor + 1,
@@ -99,7 +107,8 @@ export const handlers = [
       },
     ]);
   }),
-  http.get("/api/followingPosts", ({ request }) => {
+  http.get("/api/followingPosts", async ({ request }) => {
+    await delay(3000);
     return HttpResponse.json([
       {
         postId: 1,
@@ -296,7 +305,7 @@ export const handlers = [
   http.get("/api/followRecommends", ({ request }) => {
     return HttpResponse.json(User);
   }),
-  http.get("/api/hashtags/trends", ({ request }) => {
+  http.get("/api/trends", ({ request }) => {
     return HttpResponse.json([
       { tagId: 1, title: "제로초", count: 1264 },
       { tagId: 2, title: "원초", count: 1264 },

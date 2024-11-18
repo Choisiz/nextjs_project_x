@@ -138,15 +138,34 @@ reset: 초기데이터가 있는경우에 초기데이터로 리셋, 없으면 �
 
 # QueryClient()
 
+- 캐싱,상태관리,네트워크 요청등을 총괄
+- 전역적으로 설정하고 사용하기 위해
 - prefetchQuery
 
 # useQueryClient()
 
+- 전역적으로 생성한 QueryClient에 접근해서 데이터 수정이나 캐시 업데이트 가능
+- 데이터 강제 무효화, 데이터 프리패칭, 수동캐시 업데이트시 사용
 - getQueryData
+- prefetchInfiniteQuery
 
 # useQuery
 
+- 서버에서 데이터를 가지고오고, 캐싱 및 관리
+- 캐시에 데이터가 있으면 캐시반환, 없으면 패칭요청
+- 리액트 컴포넌트 내에서 랜더링과 요청수행
+
+# useInfiniteQuery
+
+- 페이지별로 따로관리
+- 이차원배열형태 [[1,2,3,4,5],[6,7,8,9,10]..]
+- getNextPageParam
+
 # QueryFunction
+
+# HydrationBoundary
+
+- 서버 데이터를 클라이언트로 연결해주는 다리역할
 
 # css
 

@@ -1,11 +1,17 @@
-export async function getPostRecommends() {
+type Props = { pageParam?: number };
+
+export async function getPostRecommends({ pageParam }: Props) {
+  console.log("??", pageParam);
   //todo: 데이터 불러오기
-  const res = await fetch("http://localhost:9090/api/postRecommends", {
-    next: {
-      tags: ["posts", "recommends"],
-    },
-    //cache:'no-store' //todo: 캐싱을 하기 싫다면
-  });
+  const res = await fetch(
+    `http://localhost:9090/api/postRecommends?cursor=${pageParam}`,
+    {
+      next: {
+        tags: ["posts", "recommends"],
+      },
+      //cache:'no-store' //todo: 캐싱을 하기 싫다면
+    }
+  );
   if (!res.ok) {
     throw new Error("faild error");
   }
