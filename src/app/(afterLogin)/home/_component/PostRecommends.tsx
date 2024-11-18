@@ -4,6 +4,7 @@ import {
   InfiniteData,
   useInfiniteQuery,
   useQuery,
+  useSuspenseInfiniteQuery,
 } from "@tanstack/react-query";
 import { getPostRecommends } from "@/app/(afterLogin)/home/_lib/getPostRecommends";
 import Post from "../../_component/Post";
@@ -22,7 +23,7 @@ export default function PostRecommends() {
     isPending,
     isLoading, // isPending && isFetching
     isError,
-  } = useInfiniteQuery<
+  } = useSuspenseInfiniteQuery<
     IPost[],
     Object,
     InfiniteData<IPost[]>,
@@ -49,44 +50,6 @@ export default function PostRecommends() {
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
   //인피니티 스크롤: 같은 컴포넌트내에서만 캐시가 저장되서 스크롤복원이 됨
-
-  if (isPending) {
-    return (
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <svg
-          className={styles.loader}
-          height="100%"
-          viewBox="0 0 32 32"
-          width={40}
-        >
-          <circle
-            cx="16"
-            cy="16"
-            fill="none"
-            r="14"
-            strokeWidth="4"
-            style={{ stroke: "rgb(29, 155, 240)", opacity: 0.2 }}
-          ></circle>
-          <circle
-            cx="16"
-            cy="16"
-            fill="none"
-            r="14"
-            strokeWidth="4"
-            style={{
-              stroke: "rgb(29, 155, 240)",
-              strokeDasharray: 80,
-              strokeDashoffset: 60,
-            }}
-          ></circle>
-        </svg>
-      </div>
-    );
-  }
-
-  if (isError) {
-    return "에러 처리해줘";
-  }
 
   return (
     <>
