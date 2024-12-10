@@ -21,13 +21,17 @@ const delay = (ms: number) =>
     setTimeout(res, ms);
   });
 
+const baseUrl2 = process.env.NEXT_PUBLIC_BASE_URL;
+console.log("dsdsdsd", baseUrl2);
+
 export const handlers = [
-  http.post("/api/login", () => {
-    console.log("로그인");
+  http.post(`${baseUrl2}/api/login`, () => {
+    console.log("로그인:", baseUrl2);
     return HttpResponse.json(User[1], {
       headers: {
         "Set-Cookie": "connect.sid=msw-cookie;HttpOnly;Path=/",
       },
+      //status:404
     });
   }),
   http.post("/api/logout", () => {
@@ -50,13 +54,11 @@ export const handlers = [
     });
   }),
   http.get("/api/postRecommends", async ({ request }) => {
-    console.log("추천게시글");
     await delay(1000);
     console.log("딜레이 종료");
     const url = new URL(request.url);
     const cursor = parseInt(url.searchParams.get("cursor") as string) || 0;
-    console.log("cc", cursor);
-    console.log("url", url);
+
     return HttpResponse.json([
       {
         postId: cursor + 1,

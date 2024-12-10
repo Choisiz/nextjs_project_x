@@ -33,6 +33,10 @@ export const {
         }
 
         const user = await authResponse.json();
+        console.log(
+          "process.env.NEXT_PUBLIC_BASE_URL",
+          process.env.NEXT_PUBLIC_BASE_URL
+        );
 
         //return user;
         return {

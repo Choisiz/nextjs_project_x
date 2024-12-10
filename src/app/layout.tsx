@@ -15,6 +15,9 @@ type Props = {
   children: React.ReactNode;
 };
 
+const baseUrl2 = process.env.NEXT_PUBLIC_BASE_URL2;
+console.log("baseUrl2", baseUrl2);
+
 export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">

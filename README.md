@@ -82,15 +82,20 @@
 - 결론: Parallel Routes는 여러 컴포넌트를 한 페이지에서 동시에 보여주고 싶을 때 주로 사용되며,
   Intercepted Routes는 URI에 따른 상태 변경이 필요한 경우에 더 적합합니다.
 
+# private folder(\_폴더)
+
+- uri영향x
+- 공통인 컴포넌트 빼는법
+
 # context api
+
+-
 
 # classnames(라이브러리)
 
 1. cx(classnames라는 라이브러리)
 2. 하나의 div가 클래스를 여러 개 가질 수 있는데, 그걸 조건부로 가질 수 있게.
 3. cx라는 함수 안에 들어있는 전부를 다 기본적으로 랜더링 해주지만, 앞의 주어진 조건에 따른 배열 혹은 콤마로 나열 후 적용( 방법이 많음)
-
-# private folder(\_폴더)
 
 # useSelectedLayoutSegment
 
@@ -113,6 +118,8 @@
 서버컴포넌트는 클라이언트 자식일때 항상 props, children으로 보낸다.
 onClickCapture
 useRef
+
+# onClickCapture
 
 # MSV
 
