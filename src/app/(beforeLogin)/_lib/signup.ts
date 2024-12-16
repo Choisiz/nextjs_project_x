@@ -1,9 +1,12 @@
 "use server";
 
 import { signIn } from "next-auth/react";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
-export default async (prevState: any, formData: FormData): Promise<any> => {
+export default async (
+  prevState: { message: string | null },
+  formData: FormData
+): Promise<any> => {
   if (!formData.get("id") || !(formData.get("id") as string)?.trim()) {
     return { message: "no_id" };
   }

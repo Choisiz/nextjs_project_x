@@ -89,8 +89,6 @@
 
 # context api
 
--
-
 # classnames(라이브러리)
 
 1. cx(classnames라는 라이브러리)
@@ -128,7 +126,16 @@ env는 NEXT_PUBLIC리 붙으면 브라우저에서 접근가능
 env local을 쓰면 로컬에서는 env env.local 둘다 실행
 ->그냥 로컬에서는 env.local이 돌아간다고 생각하면 쉬움
 
-redirect()는 try catch문안에서 사용하면 안됨
+# server action
+
+# redirect
+
+- redirect()는 try catch문안에서 사용하면 안됨
+- redirect는 Next.js는 현재 실행 중인 모든 코드 흐름을 중단하고 즉시 리디렉션을 처리
+- redirect는 호출 시 코드 흐름을 즉시 중단하고 리디렉션을 처리하므로, try-catch 블록 안에 있어도 catch로 넘어가지 않는다.
+- redirect 호출 후 실행 흐름이 중단되므로, try 블록 내의 나머지 코드도 실행되지 않습니다.
+- redirect는 서버 컴포넌트에서 실행: 실행환경이 서버측이기때문에
+- replace 처럼 기록이 남지 않는다.
 
 리액트쿼리핵심은 서버 데이터를 가지고오는것
 리덕스의핵심은 데이터를 컴포넌트끼리 공유하는것, 공유를 하기위해서는 서버에서 데이터를 물론 가지고오긴해야함
@@ -146,6 +153,11 @@ invaildate: 옵저버(사용하고 있는 데이터)가 있을때 가져옴, 즉
 그건아님, 화면에 안보여도 쓰고있고, 매번 쓰여야할 데이터가 있을수도있다.
 reset: 초기데이터가 있는경우에 초기데이터로 리셋, 없으면 그냥 리프래쉬
 트리거 로딩, 에러로딩: 로딩상태, 에러상태 전환으로 확인
+
+# react-query
+
+- 모든데이터는 fresh가 아니다는 전체
+-
 
 # QueryClient()
 

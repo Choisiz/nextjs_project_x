@@ -8,22 +8,19 @@ export default function RightSearchZone() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
+
   const onChangeFollow = () => {
     if (!searchParams) return;
     let url = `/search?q=${searchParams.get("q")}&pf=on`;
-    console.log("uu1", url);
     if (searchParams.has("f")) {
-      console.log("ww");
       url += `&f=${searchParams.get("f")}`;
     }
-
     router.replace(url);
   };
+
   const onChangeAll = () => {
     if (!searchParams) return;
     let url = `/search?q=${searchParams.get("q")}`;
-    console.log("uu2", url);
-
     if (searchParams.has("f")) {
       url += `&f=${searchParams.get("f")}`;
     }
@@ -33,6 +30,7 @@ export default function RightSearchZone() {
   if (pathname === "/explore") {
     return null;
   }
+
   if (pathname === "/search") {
     return (
       <div>

@@ -25,7 +25,7 @@ const baseUrl2 = process.env.NEXT_PUBLIC_BASE_URL;
 console.log("dsdsdsd", baseUrl2);
 
 export const handlers = [
-  http.post(`${baseUrl2}/api/login`, () => {
+  http.post("/api/login", () => {
     console.log("로그인:", baseUrl2);
     return HttpResponse.json(User[1], {
       headers: {
