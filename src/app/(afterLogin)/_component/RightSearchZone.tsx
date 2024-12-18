@@ -11,6 +11,7 @@ export default function RightSearchZone() {
 
   const onChangeFollow = () => {
     if (!searchParams) return;
+
     let url = `/search?q=${searchParams.get("q")}&pf=on`;
     if (searchParams.has("f")) {
       url += `&f=${searchParams.get("f")}`;
@@ -20,6 +21,7 @@ export default function RightSearchZone() {
 
   const onChangeAll = () => {
     if (!searchParams) return;
+
     let url = `/search?q=${searchParams.get("q")}`;
     if (searchParams.has("f")) {
       url += `&f=${searchParams.get("f")}`;
