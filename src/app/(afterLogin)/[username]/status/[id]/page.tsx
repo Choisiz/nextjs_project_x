@@ -13,16 +13,12 @@ import { getComments } from "@/app/(afterLogin)/[username]/status/[id]/_lib/getC
 import Comments from "./_component/Comments";
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string; username: string }>;
 };
 
 export default async function Page({ params }: Props) {
+  const { id } = await params;
   const queryClient = new QueryClient();
-  if (!params?.id) {
-    return <p>Loading...</p>; // 또는 다른 로딩 UI
-  }
-  const { id } = params;
-
   await queryClient.prefetchQuery({
     queryKey: ["posts", id],
     queryFn: getSinglePost,
@@ -32,6 +28,10 @@ export default async function Page({ params }: Props) {
     queryFn: getComments,
   });
   const dehydratedState = dehydrate(queryClient);
+
+  if (!id) {
+    return <p>Loading...</p>; // 또는 다른 로딩 UI
+  }
 
   return (
     <div className={style.main}>

@@ -13,10 +13,11 @@ import SinglePost from "@/app/(afterLogin)/[username]/status/[id]/_component/Sin
 import Comments from "@/app/(afterLogin)/[username]/status/[id]/_component/Comments";
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
-export default async function Default({ params }: Props) {
-  const { id } = params;
+
+export default async function Default(props: Props) {
+  const { id } = await props.params;
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ["posts", id],

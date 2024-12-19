@@ -159,8 +159,12 @@ reset: 초기데이터가 있는경우에 초기데이터로 리셋, 없으면 �
 - 인터페이스를 표준화(로딩,성공,실패)
 - 키구조 시스템
 - fresh: 최신상태이다.(모든 데이터는 fresh가 아니다가 기본)
-- stale: 기회가 되면 항상 가져온다
--
+- stale: 캐싱상태(기회가 되면 항상 가져온다)
+- Inactive: 해당화면에서 키값을 쓰는지 안쓰는지
+- fetching: 데이터가져올때
+- paused: 데이터멈춰있을때
+- action: 데이터 새로가져올수 있음(refetch(무조건),invalidate(옵저버가 1이 되는순간) 클릭)
+  - 화면에 안보이는 데이터 새로고침시 refetch
 
 # QueryClient()
 
@@ -195,6 +199,8 @@ reset: 초기데이터가 있는경우에 초기데이터로 리셋, 없으면 �
 # HydrationBoundary
 
 - 서버 데이터를 클라이언트로 연결해주는 다리역할
+
+# URLSearchParams
 
 # css
 

@@ -22,7 +22,6 @@ const delay = (ms: number) =>
   });
 
 const baseUrl2 = process.env.NEXT_PUBLIC_BASE_URL;
-console.log("dsdsdsd", baseUrl2);
 
 export const handlers = [
   http.post("/api/login", () => {
@@ -192,6 +191,7 @@ export const handlers = [
   }),
   http.get("/api/users/:userId/posts", ({ request, params }) => {
     const { userId } = params;
+
     return HttpResponse.json([
       {
         postId: 1,
@@ -230,7 +230,7 @@ export const handlers = [
       },
     ]);
   }),
-  http.get("/api/users/:userId", ({ request, params }): StrictResponse<any> => {
+  http.get("/api/users/:userId", ({ request, params }) => {
     const { userId } = params;
     const found = User.find((v) => v.id === userId);
     if (found) {
@@ -243,7 +243,7 @@ export const handlers = [
       }
     );
   }),
-  http.get("/api/posts/:postId", ({ request, params }): StrictResponse<any> => {
+  http.get("/api/posts/:postId", ({ request, params }) => {
     const { postId } = params;
     if (parseInt(postId as string) > 10) {
       return HttpResponse.json(

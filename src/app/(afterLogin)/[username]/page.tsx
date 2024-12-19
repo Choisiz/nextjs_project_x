@@ -11,11 +11,11 @@ import UserInfo from "./_component/\bUserInfo";
 import { auth } from "@/auth";
 
 type Props = {
-  params: { username: string };
+  params: Promise<{ username: string }>;
 };
 
-export default async function Profile({ params }: Props) {
-  const { username } = params;
+export default async function Profile(Props: Props) {
+  const { username } = Props.params;
   const session = await auth();
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
@@ -23,7 +23,7 @@ export default async function Profile({ params }: Props) {
     queryFn: getUser,
   });
   await queryClient.prefetchQuery({
-    queryKey: ["posts", "users", username],
+    queryKey: ["posts", "users", "recommends"],
     queryFn: getUserPosts,
   });
   const dehydratedState = dehydrate(queryClient);

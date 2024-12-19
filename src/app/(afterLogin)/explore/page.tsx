@@ -9,7 +9,7 @@ export default function Home() {
         <SearchForm />
       </div>
       <div className={style.trend}>
-        <h3>나를 위한 트랜드</h3>
+        <h3>나를 위한 트랜드 - 탐색하기</h3>
         <TrendSection />
       </div>
     </div>

@@ -37,7 +37,7 @@ export default function TweetModal() {
               <div className={style.postUserImage}>
                 <img
                   src={me?.user?.image as string}
-                  alt={me?.user?.id as string}
+                  alt={me?.user?.email as string}
                 />
               </div>
               s

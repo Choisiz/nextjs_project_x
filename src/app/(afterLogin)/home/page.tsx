@@ -10,10 +10,10 @@ export default async function Home() {
   return (
     <main className={style.main}>
       <TabProvider>
-        <Tab />
+        <Tab /> {/* 탭전환 onclick - context api */}
         <PostForm />
         <Suspense fallback={<Loading />}>
-          <TabDecider />
+          <TabDecider /> {/* 탭전환시 화면 - context api */}
         </Suspense>
       </TabProvider>
     </main>

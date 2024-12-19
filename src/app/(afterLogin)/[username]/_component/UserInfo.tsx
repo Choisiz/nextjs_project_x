@@ -6,6 +6,7 @@ import BackButton from "@/app/(afterLogin)/_component/BackButton";
 import { getUser } from "../_lib/getUser";
 import { User } from "@/model/User";
 import { Session } from "@auth/core/types";
+import { MouseEventHandler } from "react";
 
 type Props = {
   username: string;
@@ -58,6 +59,8 @@ export default function UserInfo({ username, session }: Props) {
     return null;
   }
 
+  const onFollow: MouseEventHandler<HTMLButtonElement> = (e) => {};
+
   return (
     <>
       <div className={style.header}>
@@ -72,7 +75,10 @@ export default function UserInfo({ username, session }: Props) {
           <div>{user.nickname}</div>
           <div>@{user.id}</div>
         </div>
-        <button className={style.followButton}>팔로우</button>
+
+        <button onClick={onFollow} className={style.followButton}>
+          팔로우
+        </button>
       </div>
     </>
   );
