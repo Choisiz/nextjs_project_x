@@ -9,7 +9,9 @@ import { useInView } from "react-intersection-observer";
 import styles from "@/app/(afterLogin)/home/home.module.css";
 
 export default function PostRecommends() {
-  //데이터 서버(msw)에서 가져오기
+  //isFetching: 데이터를 가져온순간 =t
+  //isPending: 초기에,데이터를 가져오지 않았을때 =  t
+  //isLoading: isPending && isFetching
   const { data, hasNextPage, fetchNextPage, isFetching, isPending } =
     useSuspenseInfiniteQuery<
       IPost[],

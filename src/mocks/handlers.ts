@@ -53,8 +53,7 @@ export const handlers = [
     });
   }),
   http.get("/api/postRecommends", async ({ request }) => {
-    await delay(1000);
-    console.log("딜레이 종료");
+    await delay(3000);
     const url = new URL(request.url);
     const cursor = parseInt(url.searchParams.get("cursor") as string) || 0;
 
