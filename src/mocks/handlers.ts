@@ -12,28 +12,23 @@ function generateDate() {
 
 const User = [
   { id: "elonmusk", nickname: "Elon Musk", image: "/elonmusk.png" },
-  { id: "messi10", nickname: "messi", image: "/zlogo.png" },
-  { id: "ronaldo7", nickname: "ronaldo", image: faker.image.avatar() },
+  { id: "zeroboy", nickname: "제로보이", image: "/zlogo.png" },
+  { id: "leoturtle", nickname: "레오", image: faker.image.avatar() },
 ];
 
-const delay = (ms: number) =>
-  new Promise((res) => {
-    setTimeout(res, ms);
-  });
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const baseUrl2 = process.env.NEXT_PUBLIC_BASE_URL;
-
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 export const handlers = [
-  http.post("/api/login", () => {
-    console.log("로그인:", baseUrl2);
+  http.post(`${baseUrl}/api/login`, () => {
+    console.log("로그인");
     return HttpResponse.json(User[1], {
       headers: {
         "Set-Cookie": "connect.sid=msw-cookie;HttpOnly;Path=/",
       },
-      //status:404
     });
   }),
-  http.post("/api/logout", () => {
+  http.post(`${baseUrl}/api/logout`, () => {
     console.log("로그아웃");
     return new HttpResponse(null, {
       headers: {
@@ -41,22 +36,21 @@ export const handlers = [
       },
     });
   }),
-  http.post("/api/users", async ({ request }) => {
+  http.post(`${baseUrl}/api/users`, async ({ request }) => {
     console.log("회원가입");
     // return HttpResponse.text(JSON.stringify('user_exists'), {
     //   status: 403,
-    // })
+    // });
     return HttpResponse.text(JSON.stringify("ok"), {
       headers: {
         "Set-Cookie": "connect.sid=msw-cookie;HttpOnly;Path=/",
       },
     });
   }),
-  http.get("/api/postRecommends", async ({ request }) => {
+  http.get(`${baseUrl}/api/postRecommends`, async ({ request }) => {
     await delay(3000);
     const url = new URL(request.url);
     const cursor = parseInt(url.searchParams.get("cursor") as string) || 0;
-
     return HttpResponse.json([
       {
         postId: cursor + 1,
@@ -107,7 +101,7 @@ export const handlers = [
       },
     ]);
   }),
-  http.get("/api/followingPosts", async ({ request }) => {
+  http.get(`${baseUrl}/api/followingPosts`, async ({ request }) => {
     await delay(3000);
     return HttpResponse.json([
       {
@@ -147,9 +141,8 @@ export const handlers = [
       },
     ]);
   }),
-  http.get("/api/search/:tag", ({ request, params }) => {
+  http.get(`${baseUrl}/api/search/:tag`, ({ request, params }) => {
     const { tag } = params;
-    console.log("params", params);
     return HttpResponse.json([
       {
         postId: 1,
@@ -188,9 +181,8 @@ export const handlers = [
       },
     ]);
   }),
-  http.get("/api/users/:userId/posts", ({ request, params }) => {
+  http.get(`${baseUrl}/api/users/:userId/posts`, ({ request, params }) => {
     const { userId } = params;
-
     return HttpResponse.json([
       {
         postId: 1,
@@ -229,7 +221,7 @@ export const handlers = [
       },
     ]);
   }),
-  http.get("/api/users/:userId", ({ request, params }) => {
+  http.get(`${baseUrl}/api/users/:userId`, ({ request, params }) => {
     const { userId } = params;
     const found = User.find((v) => v.id === userId);
     if (found) {
@@ -242,7 +234,7 @@ export const handlers = [
       }
     );
   }),
-  http.get("/api/posts/:postId", ({ request, params }) => {
+  http.get(`${baseUrl}/api/posts/:postId`, ({ request, params }) => {
     const { postId } = params;
     if (parseInt(postId as string) > 10) {
       return HttpResponse.json(
@@ -264,7 +256,7 @@ export const handlers = [
       createdAt: generateDate(),
     });
   }),
-  http.get("/api/posts/:postId/comments", ({ request, params }) => {
+  http.get(`${baseUrl}/api/posts/:postId/comments`, ({ request, params }) => {
     const { postId } = params;
     return HttpResponse.json([
       {
@@ -304,20 +296,20 @@ export const handlers = [
       },
     ]);
   }),
-  http.get("/api/followRecommends", ({ request }) => {
+  http.get(`${baseUrl}/api/followRecommends`, ({ request }) => {
     return HttpResponse.json(User);
   }),
-  http.get("/api/trends", ({ request }) => {
+  http.get(`${baseUrl}/api/trends`, ({ request }) => {
     return HttpResponse.json([
-      { tagId: 1, title: "제로초", count: 1264 },
-      { tagId: 2, title: "원초", count: 1264 },
-      { tagId: 3, title: "투초", count: 1264 },
-      { tagId: 4, title: "쓰리초", count: 1264 },
-      { tagId: 5, title: "포초", count: 1264 },
-      { tagId: 6, title: "파이브초", count: 1264 },
-      { tagId: 7, title: "식스초", count: 1264 },
-      { tagId: 8, title: "세븐초", count: 1264 },
-      { tagId: 9, title: "나인초", count: 1264 },
+      { tagId: 1, title: "제로0", count: 1264 },
+      { tagId: 2, title: "원1", count: 1264 },
+      { tagId: 3, title: "투2", count: 1264 },
+      { tagId: 4, title: "쓰리3", count: 1264 },
+      { tagId: 5, title: "포4", count: 1264 },
+      { tagId: 6, title: "파이브5", count: 1264 },
+      { tagId: 7, title: "식스6", count: 1264 },
+      { tagId: 8, title: "세븐7", count: 1264 },
+      { tagId: 9, title: "에잇8", count: 1264 },
     ]);
   }),
 ];

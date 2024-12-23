@@ -1,12 +1,12 @@
 "use server";
 
-import { signIn } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { signIn } from "@/auth";
 
 export default async (
   prevState: { message: string | null },
   formData: FormData
-): Promise<any> => {
+) => {
   if (!formData.get("id") || !(formData.get("id") as string)?.trim()) {
     return { message: "no_id" };
   }
@@ -22,9 +22,10 @@ export default async (
   if (!formData.get("image")) {
     return { message: "no_image" };
   }
+  formData.set("nickname", formData.get("name") as string);
   let shouldRedirect = false;
   try {
-    const response: Response = await fetch(
+    const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/users`,
       {
         method: "post",
@@ -35,6 +36,14 @@ export default async (
     console.log(response.status);
     if (response.status === 403) {
       return { message: "user_exists" };
+    } else if (response.status === 400) {
+      return {
+        message: (await response.json()).data[0],
+        id: formData.get("id"),
+        nickname: formData.get("nickname"),
+        password: formData.get("password"),
+        image: formData.get("image"),
+      };
     }
     console.log(await response.json());
     shouldRedirect = true;
@@ -43,11 +52,13 @@ export default async (
       password: formData.get("password"),
       redirect: false,
     });
-  } catch (e) {
-    console.log(e);
+  } catch (err) {
+    console.error(err);
     return { message: null };
   }
+
   if (shouldRedirect) {
-    redirect("/home");
+    redirect("/home"); // try/catch문 안에서 X
   }
+  return { message: null };
 };
