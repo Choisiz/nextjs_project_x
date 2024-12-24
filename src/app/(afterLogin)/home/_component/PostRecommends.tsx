@@ -82,6 +82,7 @@ export default function PostRecommends() {
     );
   }
 
+  console.log("data", data);
   return (
     <>
       {data?.pages.map((page, i) => (
@@ -91,7 +92,7 @@ export default function PostRecommends() {
           ))}
         </Fragment>
       ))}
-      <div ref={ref} style={{ height: 50 }}></div>
+      <div ref={ref} style={{ height: 50 }} />
       {/*이게 보이기 시작하면 fetchNextPage를 호출 */}
     </>
   );

@@ -17,6 +17,7 @@ export default async function Home() {
         <Suspense fallback={<Loading />}>
           <TabDecider /> {/* 탭전환시 화면 - context api */}
         </Suspense>
+        d
       </TabProvider>
     </main>
   );
