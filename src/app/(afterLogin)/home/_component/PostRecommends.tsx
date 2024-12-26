@@ -83,6 +83,7 @@ export default function PostRecommends() {
   }
 
   console.log("data", data);
+
   return (
     <>
       {data?.pages.map((page, i) => (
