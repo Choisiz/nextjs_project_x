@@ -4,23 +4,33 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import UserPosts from "./_component/UserPosts";
-import { getUserPosts } from "./_lib/getUserPosts";
-import { getUser } from "./_lib/getUser";
-import UserInfo from "./_component/\bUserInfo";
+import { getUserPosts } from "@/app/(afterLogin)/[username]/_lib/getUserPosts";
+import UserPosts from "@/app/(afterLogin)/[username]/_component/UserPosts";
+import UserInfo from "@/app/(afterLogin)/[username]/_component/UserInfo";
+import { getUserServer } from "@/app/(afterLogin)/[username]/_lib/getUserServer";
 import { auth } from "@/auth";
+import { User } from "@/model/User";
 
 type Props = {
   params: Promise<{ username: string }>;
 };
 
-export default async function Profile(Props: Props) {
-  const { username } = Props.params;
+export async function generateMetadata({ params }: Props) {
+  const { username } = await params;
+  const user: User = await getUserServer({ queryKey: ["users", username] });
+  return {
+    title: `${user.nickname} (${user.id}) / Z`,
+    description: `${user.nickname} (${user.id}) 프로필`,
+  };
+}
+
+export default async function Profile(props: Props) {
+  const { username } = await props.params;
   const session = await auth();
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ["users", username],
-    queryFn: getUser,
+    queryFn: getUserServer,
   });
   await queryClient.prefetchQuery({
     queryKey: ["posts", "users", "recommends"],

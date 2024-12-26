@@ -3,22 +3,17 @@
 import style from "../search.module.css";
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-
 export default function Tab() {
   const [current, setCurrent] = useState("hot");
   const router = useRouter();
   const searchParams = useSearchParams();
-
   const onClickHot = () => {
-    if (!searchParams) return;
     setCurrent("hot");
     const newSearchParams = new URLSearchParams(searchParams);
     newSearchParams.delete("f");
     router.replace(`/search?${newSearchParams.toString()}`);
   };
-
   const onClickNew = () => {
-    if (!searchParams) return;
     setCurrent("new");
     const newSearchParams = new URLSearchParams(searchParams);
     newSearchParams.set("f", "live");

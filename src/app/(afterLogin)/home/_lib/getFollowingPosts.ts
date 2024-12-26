@@ -5,17 +5,17 @@ export async function getFollowingPosts() {
       next: {
         tags: ["posts", "followings"],
       },
-      cache: "no-store",
+      credentials: "include",
+      cache: "force-cache",
     }
   );
-  if (!res.ok) {
-    throw new Error("faild error");
-  }
+  // The return value is *not* serialized
+  // You can return Date, Map, Set, etc.
 
-  //todo: 태그에 대한 데이터를 새로고침
-  //revalidateTag("posts");
-  //todo: 페이지에 대한 전체데이터를 새로고침
-  //revalidatePath("/home");
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch data");
+  }
 
   return res.json();
 }

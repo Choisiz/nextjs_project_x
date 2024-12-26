@@ -9,9 +9,6 @@ import { useInView } from "react-intersection-observer";
 import styles from "@/app/(afterLogin)/home/home.module.css";
 
 export default function PostRecommends() {
-  //isFetching: 데이터를 가져온순간 =t
-  //isPending: 초기에,데이터를 가져오지 않았을때 =  t
-  //isLoading: isPending && isFetching
   const { data, hasNextPage, fetchNextPage, isFetching, isPending } =
     useSuspenseInfiniteQuery<
       IPost[],
@@ -21,16 +18,16 @@ export default function PostRecommends() {
       number
     >({
       queryKey: ["posts", "recommends"],
-      queryFn: getPostRecommends, //todo: 다음페이지 불러오는 함수, 불러올떄마다 isFetching true
+      queryFn: getPostRecommends,
       initialPageParam: 0,
       getNextPageParam: (lastPage) => lastPage.at(-1)?.postId,
-      staleTime: 60 * 1000, //todo: 0초뒤에 fresh에서 stale로
-      gcTime: 300 * 1000, //todo: 메모리 많아지면 정리하는것, staleTime보다 더 길게 해야함
+      staleTime: 60 * 1000,
+      gcTime: 300 * 1000,
     });
 
   const { ref, inView } = useInView({
-    threshold: 0, //몇 픽셀
-    delay: 2, //몇 초후
+    threshold: 0,
+    delay: 0,
   });
 
   useEffect(() => {
@@ -38,8 +35,6 @@ export default function PostRecommends() {
       !isFetching && hasNextPage && fetchNextPage();
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
-
-  //인피니티 스크롤: 같은 컴포넌트내에서만 캐시가 저장되서 스크롤복원이 됨
 
   if (isPending) {
     return (
@@ -82,8 +77,6 @@ export default function PostRecommends() {
     );
   }
 
-  console.log("data", data);
-
   return (
     <>
       {data?.pages.map((page, i) => (
@@ -94,7 +87,6 @@ export default function PostRecommends() {
         </Fragment>
       ))}
       <div ref={ref} style={{ height: 50 }} />
-      {/*이게 보이기 시작하면 fetchNextPage를 호출 */}
     </>
   );
 }
