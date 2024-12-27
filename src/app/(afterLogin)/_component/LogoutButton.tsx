@@ -13,10 +13,14 @@ export default function LogoutButton({ me }: Props) {
   const router = useRouter();
 
   const onLogout = () => {
-    signOut({ redirect: false }).then(() => {
-      router.replace("/");
-    });
+    signOut({ callbackUrl: "/" });
   };
+
+  // const onLogout = () => {
+  //   signOut({ redirect: false }).then(() => {
+  //     router.replace("/");
+  //   });
+  // };
 
   //유저정보가 없다면 null을 return
   if (!me?.user) {

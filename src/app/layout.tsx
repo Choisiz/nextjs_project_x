@@ -16,8 +16,8 @@ if (
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Z. 무슨 일이 일어나고 있나요? / Z",
-  description: "Z.com inspired by X.com",
+  title: "X. 무슨 일이 일어나고 있나요? / X",
+  description: "X.com inspired by X.com",
 };
 
 type Props = {

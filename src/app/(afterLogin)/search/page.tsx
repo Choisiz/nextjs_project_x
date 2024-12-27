@@ -17,8 +17,8 @@ export async function generateMetadata(
   const { q } = await searchParams;
   console.log("parent", parent);
   return {
-    title: `${q} - 검색 / Z`,
-    description: `${q} - 검색 / Z`,
+    title: `${q} - 검색 / X`,
+    description: `${q} - 검색 / X`,
   };
 }
 

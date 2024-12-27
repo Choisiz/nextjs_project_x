@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     getSinglePostServer({ queryKey: ["posts", id] }),
   ]);
   return {
-    title: `Z에서 ${user.nickname} 님 : ${post.content}`,
+    title: `X에서 ${user.nickname} 님 : ${post.content}`,
     description: post.content,
   };
 }

@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props) {
   const { username } = await params;
   const user: User = await getUserServer({ queryKey: ["users", username] });
   return {
-    title: `${user.nickname} (${user.id}) / Z`,
+    title: `${user.nickname} (${user.id}) / X`,
     description: `${user.nickname} (${user.id}) 프로필`,
   };
 }

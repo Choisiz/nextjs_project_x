@@ -9,7 +9,7 @@ import { auth } from "@/auth";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "홈 / Z",
+  title: "홈 / X",
   description: "홈",
 };
 

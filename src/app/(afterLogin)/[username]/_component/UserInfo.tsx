@@ -13,6 +13,7 @@ type Props = {
   username: string;
   session: Session | null;
 };
+
 export default function UserInfo({ username, session }: Props) {
   const { data: user, error } = useQuery<
     User,
